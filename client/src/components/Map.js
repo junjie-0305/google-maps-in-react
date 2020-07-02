@@ -3,6 +3,7 @@ import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "reac
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import { GoogleMapsAPI } from '../client-config';
+import history from '../utils/history';
 Geocode.setApiKey( GoogleMapsAPI );
 Geocode.enableDebug();
 
@@ -139,6 +140,14 @@ class Map extends Component{
 	};
 
 	/**
+	 * function for posting searched address
+	 * @param event 
+	 */
+	onPost = ( event ) => {
+		let address = this.state.address;
+		history.push('/details?address=' + address);
+	}
+	/**
 	 * When the marker is dragged you get the lat and long using the functions available from event object.
 	 * Use geocode to get the address, city, area and state from the lat and lng positions.
 	 * And then set those values in the state.
@@ -236,11 +245,10 @@ class Map extends Component{
 						{/* For Auto complete Search Box */}
 						<Autocomplete
 							style={{
-								width: '100%',
+								width: '70%',
 								height: '40px',
 								paddingLeft: '16px',
 								marginTop: '2px',
-								marginBottom: '500px'
 							}}
 							onPlaceSelected={ this.onPlaceSelected }
 							types={['(regions)']}
@@ -252,25 +260,6 @@ class Map extends Component{
 		let map;
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
-				<div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Area</label>
-						<input type="text" name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">State</label>
-						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
-					</div>
-				</div>
-
 				<AsyncMap
 					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places`}
 					loadingElement={
@@ -282,8 +271,9 @@ class Map extends Component{
 					mapElement={
 						<div style={{ height: `100%` }} />
 					}
-				/>
-			</div>
+					/>
+					<button className="btn btn-primary" style={{ float: `right`, marginRight: `20%`, width: `100px` }} onClick={ this.onPost }>POST</button>
+				</div>;
 		} else {
 			map = <div style={{height: this.props.height}} />
 		}

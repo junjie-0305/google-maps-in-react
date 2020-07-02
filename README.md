@@ -1,11 +1,7 @@
 # Google Maps in React: Autocomplete Location Search | Draggable Marker | Marker Infobox
 
-******* PLEASE STAR MY REPO TO SUPPORT ME 🙏 ******
-
-Please follow me 🙏 on [twitter](https://twitter.com/imranhsayed) and github
-
 ## Description :clipboard:
-> Demo App for Autocomplete Location Search, Draggable marker and Infobox using Google Maps API and React .
+> Test App for Autocomplete Location Search, Draggable marker and Infobox using Google Maps API and React .
 
 ![](google-maps-image.jpg)
 
@@ -29,13 +25,14 @@ GoogleMapsAPI = 'xxxxx';
 
 ## Installation Instructions :wrench:
 
-1. Clone the repo using `git clone https://github.com/imranhsayed/google-maps-in-react`
-2. `cd google-maps-in-react`
-3. `npm install`
-4. `cd client`
-5. `npm install`
-7. `cd ..`
-8. `npm run dev`
+1. `cd google-maps-in-react`
+2. `npm install`
+3. `cd client`
+4. `npm install`
+5. `cd ..`
+6. `npm run dev`
+
+You can run "npm start" rather than "npm run dev". Please follow the scripts defined in package.json file.
 
 ## Built With :zap:
 
